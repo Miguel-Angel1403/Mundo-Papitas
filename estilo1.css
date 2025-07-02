@@ -1,55 +1,210 @@
-@media (max-width: 480px) {
-  .bloque-centro {
-    padding: 20px 10px;
-    font-size: 1.1rem;
-  }
+html {
+  scroll-behavior: smooth;
+}
 
-  .bloque-centro h2,
-  .bloque-centro label {
-    font-size: 1.2rem;
-  }
+body {
+  background: linear-gradient(-45deg, #6a11cb, #2575fc, #ff8c00, #ff2d55);
+  background-size: 400% 400%;
+  animation: moverFondo 3s ease infinite;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-  .bloque-centro input,
-  .bloque-centro select,
-  .bloque-centro textarea {
-    width: 100%;
-    font-size: 0.95rem;
-  }
+@keyframes moverFondo {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-  .bloque-centro button {
-    padding: 8px 16px;
-    font-size: 0.95rem;
-  }
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.409);
+  padding: 10px;
+  text-align: center;
+  z-index: 1000;
+}
 
-  .opciones {
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+nav ul li a {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  text-decoration: none;
+  padding: 10px 30px;
+  transition: all 0.3s ease;
+}
+
+main {
+  margin-top: 60px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.imagen-centrada {
+  margin: 0 auto;
+  max-width: 900px;
+  border-radius: 50px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.img-central {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  z-index: -1;
+  opacity: 0.3;
+  border-radius: 30px;
+  pointer-events: none;
+}
+
+.papas-esquina {
+  position: fixed;
+  bottom: -20px;
+  right: 0;
+  width: clamp(200px, 25vw, 350px);
+  opacity: 1;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bloque-centro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 1500px;
+  margin: clamp(80px, 15vw, 120px) auto 40px;
+  padding: clamp(1rem, 5vw, 2rem);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.bloque-centro h2 {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  margin-bottom: 1rem;
+}
+
+.bloque-centro label {
+  font-size: 1.2rem;
+}
+
+.bloque-centro input,
+.bloque-centro select,
+.bloque-centro textarea {
+  font-size: 1rem;
+  width: 100%;
+  max-width: 480px;
+  padding: 8px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
+  box-sizing: border-box;
+}
+
+.bloque-centro button {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #ffcc00;
+  color: #000;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.bloque-centro button:hover {
+  background-color: #ffd633;
+}
+
+.opciones {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  overflow-x: auto;
+  gap: 4px;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+.opciones::-webkit-scrollbar {
+  height: 6px;
+}
+
+.opciones::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.opciones input[type="checkbox"] {
+  display: none;
+}
+
+.opciones label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #000;
+  font-size: 1.08rem;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition: all 0.25s ease;
+}
+
+.opciones label:hover {
+  background: rgba(255, 255, 255, 0.703);
+}
+
+.opciones input[type="checkbox"]:checked + label {
+  background: rgba(0, 255, 13, 0.9);
+  color: #000;
+  font-weight: 600;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+  nav ul {
     flex-direction: column;
-    align-items: stretch;
-    gap: 6px;
-    padding-bottom: 10px;
+    text-align: center;
+    gap: 1rem;
   }
 
-  .opciones label {
-    width: 100%;
+  .bloque-centro {
+    padding: 1rem;
     font-size: 1rem;
   }
 
   .imagen-centrada {
-    max-width: 90%;
-    border-radius: 30px;
+    max-width: 100%;
+    border-radius: 20px;
   }
 
-  .papas-esquina {
-    width: 220px;
-    bottom: -20px;
-    right: -5px;
-  }
-
-  nav {
-    padding: 8px;
-  }
-
-  nav ul li a {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+  footer {
+    padding: 1rem;
   }
 }

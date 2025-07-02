@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pedido Mundo Papitas</title>
   <link rel="stylesheet" href="estilo1.css" />
-  <img src="papas.png" alt="Papas fritas" class="img-central">
 </head>
 <body>
+  <img src="papas.png" alt="Papas fritas" class="img-central" />
+
   <header>
     <nav>
       <ul>
@@ -23,37 +24,37 @@
   <main class="bloque-centro">
     <h2>🛒 Arma tu Pedido</h2>
 
-    <div class="fila-doble">
-      <label for="nombre">Tu nombre:</label>
-      <input type="text" id="nombre" />
-    </div>
-
-    <div class="fila-doble">
-      <label for="cantidadConos">¿Cuántos conos deseas?</label>
-      <select id="cantidadConos" onchange="mostrarSecciones()">
-        <option value="1">1 Cono</option>
-        <option value="2">2 Conos</option>
-        <option value="3">3 Conos</option>
-      </select>
-    </div>
-
     <form id="formularioPedido">
+      <div class="fila-doble">
+        <label for="nombre">Tu nombre:</label>
+        <input type="text" id="nombre" required />
+      </div>
+
+      <div class="fila-doble">
+        <label for="cantidadConos">¿Cuántos conos deseas?</label>
+        <select id="cantidadConos" onchange="mostrarSecciones()">
+          <option value="1">1 Cono</option>
+          <option value="2">2 Conos</option>
+          <option value="3">3 Conos</option>
+        </select>
+      </div>
+
       <div id="conosContainer"></div>
 
       <div class="total">
-        Total: <span id="totalFinal">0</span> Bs
+        💰 Total: <span id="totalFinal">0</span> Bs
       </div>
 
       <button type="button" class="boton" onclick="enviarPedido()">Enviar pedido por WhatsApp</button>
       <div class="resumen" id="resumen"></div>
-      <div class="confirmacion" id="confirmacion">✅ ¡Pedido generado y listo para enviar!</div>
+      <div class="confirmacion" id="confirmacion" style="display: none;">✅ ¡Pedido generado y listo para enviar!</div>
     </form>
   </main>
 
   <script>
     const precios = { estudioso: 12, comelon: 15, devorador: 18 };
     const maxProteinas = { estudioso: 1, comelon: 2, devorador: 3 };
-    const proteinas = ["Chorizo Parrillero", "Salchicha", "Pipocas de Pollo", "Charque", "Jamon", "Bolitas de Carne"];
+    const proteinas = ["Chorizo Parrillero", "Salchicha", "Pipocas de Pollo", "Charque", "Jamón", "Bolitas de Carne"];
     const salsas = ["Ketchup", "Mayonesa", "Mostaza", "Salsa Golf", "Salsa verde con Ajo", "Miel y Mostaza", "Salsa BBQ", "Ketchup Picante", "Mayonesa Picante", "Salsa Picosa"];
 
     function mostrarSecciones() {
@@ -78,7 +79,7 @@
           <legend>Cono ${i}</legend>
 
           <label>Tipo de cono:
-            <select id="tipo${i}" onchange="actualizarCono(${i})">
+            <select id="tipo${i}" onchange="actualizarCono(${i})" required>
               <option value="">-- Elegir --</option>
               <option value="estudioso">Estudioso (12 Bs)</option>
               <option value="comelon">Comelón (15 Bs)</option>
@@ -88,16 +89,12 @@
 
           <div>
             <label><strong>Proteínas:</strong></label>
-            <div class="opciones">
-              ${proteHTML}
-            </div>
+            <div class="opciones">${proteHTML}</div>
           </div>
 
           <div>
             <label><strong>Salsas (máx. 6):</strong></label>
-            <div class="opciones">
-              ${salsaHTML}
-            </div>
+            <div class="opciones">${salsaHTML}</div>
           </div>
 
           <label>Comentarios:</label>

@@ -1,52 +1,37 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 10;
-}
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(174, 174, 174, 0.409);
-  padding: 10px 0;
-  z-index: 1000;
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  nav ul li a {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+  }
+
+  body {
+    font-size: 1rem;
+    padding: 0;
+  }
+
+  html, body {
+    overflow-x: hidden;
+  }
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  gap: 2rem; 
-}
+@media (max-width: 480px) {
+  nav {
+    padding: 6px 0;
+  }
 
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 6px 10px;
-}
-body {
-  font-family: sans-serif;
-  animation: cambioFondo 25s infinite;
-  background-size: cover; 
-  background-position: center center; 
-  background-repeat: no-repeat;
-  transition: background-image 1s ease-in-out;
-  margin: 0;
-  padding: 0;
-}
+  nav ul li a {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
 
-html, body {
-  height: 100%;
-}
-@keyframes cambioFondo {
-  0%    { background-image: url('p1.jpg'); }
-  20%   { background-image: url('p2.jpg'); }
-  40%   { background-image: url('p3.jpg'); }
-  60%   { background-image: url('p4.jpg'); }
-  80%   { background-image: url('p5.jpg'); }
-  100%  { background-image: url('p1.jpg'); }
+  body {
+    background-size: cover;
+    background-position: center;
+  }
 }

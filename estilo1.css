@@ -1,208 +1,55 @@
-html {
-  scroll-behavior: smooth;
-}
-.imagen-centrada {
-  display: block;
-  margin: 0 auto;
-  width: 900%; 
-  max-width: 900px;
-  border-radius: 50px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-}
-nav ul {  
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-}
-
-nav ul li {
-  margin: -5px 15px;
-}
-
-nav ul li a {
-  color: rgb(255, 255, 255);
-  font-weight: 600;
-  text-decoration: none;
-  padding: 10px 65px;
-  transition: 50s;
-}
-
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
+@media (max-width: 480px) {
+  .bloque-centro {
+    padding: 20px 10px;
+    font-size: 1.1rem;
   }
 
-  nav ul {
+  .bloque-centro h2,
+  .bloque-centro label {
+    font-size: 1.2rem;
+  }
+
+  .bloque-centro input,
+  .bloque-centro select,
+  .bloque-centro textarea {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  .bloque-centro button {
+    padding: 8px 16px;
+    font-size: 0.95rem;
+  }
+
+  .opciones {
     flex-direction: column;
-    text-align: center;
+    align-items: stretch;
+    gap: 6px;
+    padding-bottom: 10px;
   }
 
-  nav ul li {
-    margin: 10px 0;
+  .opciones label {
+    width: 100%;
+    font-size: 1rem;
   }
 
-  section {
-    width: 90%;
-    padding: 15px;
+  .imagen-centrada {
+    max-width: 90%;
+    border-radius: 30px;
   }
 
-  footer {
-    padding: 1rem;
+  .papas-esquina {
+    width: 220px;
+    bottom: -20px;
+    right: -5px;
   }
-}
-body {
-  background: linear-gradient(-45deg, #6a11cb, #2575fc, #ff8c00, #ff2d55);
-  background-size: 400% 400%;
-  animation: moverFondo 3s ease infinite;
-}
 
-
-@keyframes moverFondo {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-nav {
-  position: fixed;
-  top: 0;
-  width: 97.5%;
-  background: rgba(0, 0, 0, 0.409);
-  padding: 10px;
-  text-align: center;
-  z-index: 1000;
-}
-
-main {
-  margin-top: 50px;
-}
-.img-central {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 700px;
-  width: 80%;
-  z-index: -1;
-  opacity: 0.3; 
-  border-radius: 30px;
-  pointer-events: none; 
+  nav {
+    padding: 8px;
   }
-.papas-esquina {
-  position: fixed;
-  bottom: -40px;         
-  right: -10px;          
-  width: 350px;       
-  opacity: 1;    
-  z-index: 0;       
-  pointer-events: none; 
-}
-.bloque-centro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 
-  width: 90%;
-  max-width: 1500px;
-
-  margin: 120px auto 40px;
-  padding: 40px 20px;
-
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 15px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-  text-align: center;
-
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 1.5rem;
-}
-
-.bloque-centro h2 {
-  font-size: 1.5rem;
-  margin-bottom: 2px;
-}
-
-.bloque-centro label {
-  font-size: 1.5rem;
-}
-
-.bloque-centro input,
-.bloque-centro select,
-.bloque-centro textarea {
-  font-size: 1rem;
-  width: 100%;
-  max-width: 480px;
-  padding: 8px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: none;
-  box-sizing: border-box;
-}
-
-.bloque-centro button {
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  background-color: #ffcc00;
-  color: #000;
-  border: none;
-  transition: background 0.3s ease;
-}
-
-.bloque-centro button:hover {
-  background-color: #ffd633;
-}
-/*esto es para mos opciones separar y distancia decada uno*/
-.opciones {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  overflow-x: auto;
-  gap: 2px;
-  margin: 0px 0;
-  padding-bottom: 2px;
-  scrollbar-width: thin;
-  scroll-behavior: smooth;
-}
-
-.opciones::-webkit-scrollbar {
-  height: 6px;
-}
-
-.opciones::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
-}
-.opciones input[type="checkbox"] {
-  display: none;
-}
-/*esto es para los botones color fondo*/
-.opciones label {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 14px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.18);
-  color: #000;
-  font-size: 1.08rem;
-  cursor: pointer;
-  white-space: nowrap;
-  user-select: none;
-  transition: all 0.25s ease;
-}
-/*esto es cuando pasa el mouse por los botones*/
-.opciones label:hover {
-  background: rgba(255, 255, 255, 0.703);
-}
-/*esto es cuando hago click en los botones y los da color*/
-.opciones input[type="checkbox"]:checked + label {
-  background: rgba(0, 255, 13, 0.9);
-  color: #000000;
-  font-weight: 600;
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+  nav ul li a {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
 }

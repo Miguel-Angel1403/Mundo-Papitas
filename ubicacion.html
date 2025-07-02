@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ubicación</title>
   <link rel="stylesheet" href="estilo1.css" />
-  <img src="papas.png" alt="Decoración Papas" class="papas-esquina">
   <style>
     .contenedor-ubicacion {
       max-width: 800px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: clamp(1.5rem, 5vw, 2.5rem);
       background: rgba(255, 255, 255, 0.9);
       border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       text-align: center;
     }
 
@@ -40,9 +39,25 @@
     .volver:hover {
       background: #1a5ed9;
     }
+
+    @media (max-width: 768px) {
+      .contenedor-ubicacion {
+        padding: 1rem;
+      }
+
+      iframe {
+        height: 250px;
+      }
+
+      .volver {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
+  <img src="papas.png" alt="Decoración Papas" class="papas-esquina" />
+
   <header>
     <nav>
       <ul>
@@ -59,18 +74,19 @@
     <div class="contenedor-ubicacion">
       <h2>📍 ¿Dónde estamos?</h2>
       <p>
-        Nos encontramos en la  
+        Nos encontramos en la
         <a href="https://www.google.com/maps?q=calle+Oruro+157,+Potosí,+Bolivia" target="_blank">
           calle Oruro #157, POTOSÍ - BOLIVIA
         </a>
       </p>
 
-      <iframe 
-        src="https://www.google.com/maps?q=calle+Oruro+157,+Potosí,+Bolivia&output=embed" 
-        allowfullscreen="" loading="lazy">
+      <iframe
+        src="https://www.google.com/maps?q=calle+Oruro+157,+Potosí,+Bolivia&output=embed"
+        allowfullscreen=""
+        loading="lazy">
       </iframe>
 
-      <a class="volver" href="inicio.html">⬅ VOLVER A INICIO</a>
+      <a class="volver" href="index.html">⬅ VOLVER A INICIO</a>
     </div>
   </main>
 </body>

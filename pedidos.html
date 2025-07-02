@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedido Mundo Papitas</title>
+  <link rel="stylesheet" href="estilo1.css" />
+  <img src="papas.png" alt="Papas fritas" class="img-central">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="inicio.html">INICIO</a></li>
+        <li><a href="sobremi.html">MENU</a></li>
+        <li><a href="contacto.html">CONTACTO</a></li>
+        <li><a href="ubicacion.html">UBICACIÓN</a></li>
+        <li><a href="pedidos.html">PEDIDOS</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="bloque-centro">
+    <h2>🛒 Arma tu Pedido</h2>
+
+    <div class="fila-doble">
+      <label for="nombre">Tu nombre:</label>
+      <input type="text" id="nombre" />
+    </div>
+
+    <div class="fila-doble">
+      <label for="cantidadConos">¿Cuántos conos deseas?</label>
+      <select id="cantidadConos" onchange="mostrarSecciones()">
+        <option value="1">1 Cono</option>
+        <option value="2">2 Conos</option>
+        <option value="3">3 Conos</option>
+      </select>
+    </div>
+
+    <form id="formularioPedido">
+      <div id="conosContainer"></div>
+
+      <div class="total">
+        Total: <span id="totalFinal">0</span> Bs
+      </div>
+
+      <button type="button" class="boton" onclick="enviarPedido()">Enviar pedido por WhatsApp</button>
+      <div class="resumen" id="resumen"></div>
+      <div class="confirmacion" id="confirmacion">✅ ¡Pedido generado y listo para enviar!</div>
+    </form>
+  </main>
+
+  <script>
+    const precios = { estudioso: 12, comelon: 15, devorador: 18 };
+    const maxProteinas = { estudioso: 1, comelon: 2, devorador: 3 };
+    const proteinas = ["Chorizo Parrillero", "Salchicha", "Pipocas de Pollo", "Charque", "Jamon", "Bolitas de Carne"];
+    const salsas = ["Ketchup", "Mayonesa", "Mostaza", "Salsa Golf", "Salsa verde con Ajo", "Miel y Mostaza", "Salsa BBQ", "Ketchup Picante", "Mayonesa Picante", "Salsa Picosa"];
+
+    function mostrarSecciones() {
+      const cantidad = parseInt(document.getElementById("cantidadConos").value);
+      const container = document.getElementById("conosContainer");
+      container.innerHTML = "";
+
+      for (let i = 1; i <= cantidad; i++) {
+        const fieldset = document.createElement("fieldset");
+
+        const proteHTML = proteinas.map((p, index) =>
+          `<input type="checkbox" id="p${i}_${index}" class="p${i}" value="${p}" onchange="validarProteinas(${i})">
+           <label for="p${i}_${index}">${p}</label>`
+        ).join("");
+
+        const salsaHTML = salsas.map((s, index) =>
+          `<input type="checkbox" id="s${i}_${index}" class="s${i}" value="${s}" onchange="validarSalsas(${i})">
+           <label for="s${i}_${index}">${s}</label>`
+        ).join("");
+
+        fieldset.innerHTML = `
+          <legend>Cono ${i}</legend>
+
+          <label>Tipo de cono:
+            <select id="tipo${i}" onchange="actualizarCono(${i})">
+              <option value="">-- Elegir --</option>
+              <option value="estudioso">Estudioso (12 Bs)</option>
+              <option value="comelon">Comelón (15 Bs)</option>
+              <option value="devorador">Devorador (18 Bs)</option>
+            </select>
+          </label>
+
+          <div>
+            <label><strong>Proteínas:</strong></label>
+            <div class="opciones">
+              ${proteHTML}
+            </div>
+          </div>
+
+          <div>
+            <label><strong>Salsas (máx. 6):</strong></label>
+            <div class="opciones">
+              ${salsaHTML}
+            </div>
+          </div>
+
+          <label>Comentarios:</label>
+          <textarea id="comentario${i}" rows="2"></textarea>
+        `;
+        container.appendChild(fieldset);
+      }
+
+      calcularTotal();
+    }
+
+    function actualizarCono(i) {
+      validarProteinas(i);
+      calcularTotal();
+    }
+
+    function validarProteinas(i) {
+      const tipo = document.getElementById(`tipo${i}`).value;
+      const max = maxProteinas[tipo] || 0;
+      const checks = document.querySelectorAll(`.p${i}`);
+      const seleccionadas = [...checks].filter(c => c.checked);
+
+      if (seleccionadas.length > max) {
+        alert(`Solo puedes elegir ${max} proteína${max > 1 ? "s" : ""} en el Cono ${i}`);
+        checks.forEach(c => c.checked = false);
+      }
+    }
+
+    function validarSalsas(i) {
+      const checks = document.querySelectorAll(`.s${i}`);
+      const seleccionadas = [...checks].filter(c => c.checked);
+
+      if (seleccionadas.length > 6) {
+        alert("Solo puedes elegir hasta 6 salsas");
+        checks.forEach(c => c.checked = false);
+      }
+    }
+
+    function calcularTotal() {
+      let total = 0;
+      const cantidad = parseInt(document.getElementById("cantidadConos").value);
+      for (let i = 1; i <= cantidad; i++) {
+        const tipo = document.getElementById(`tipo${i}`)?.value;
+        total += precios[tipo] || 0;
+      }
+      document.getElementById("totalFinal").textContent = total;
+    }
+
+    function enviarPedido() {
+      const nombre = document.getElementById("nombre").value.trim();
+      if (!nombre) {
+        alert("Por favor, ingresa tu nombre.");
+        return;
+      }
+
+      const cantidad = parseInt(document.getElementById("cantidadConos").value);
+      let resumen = `🧾 *Pedido Mundo Papitas*\n👤 *Nombre:* ${nombre}\n`;
+
+      for (let i = 1; i <= cantidad; i++) {
+        const tipo = document.getElementById(`tipo${i}`).value;
+        if (!tipo) {
+          alert(`Falta seleccionar el tipo en Cono ${i}`);
+          return;
+        }
+        const prot = [...document.querySelectorAll(`.p${i}:checked`)].map(e => e.value);
+        const salsa = [...document.querySelectorAll(`.s${i}:checked`)].map(e => e.value);
+        const comentario = document.getElementById(`comentario${i}`).value.trim();
+
+        resumen += `\n🍟 *Cono ${i}:* ${tipo.charAt(0).toUpperCase() + tipo.slice(1)} (${precios[tipo]} Bs)\n`;
+        resumen += `🥩 Proteínas: ${prot.join(", ") || "Ninguna"}\n`;
+        resumen += `🌶️ Salsas: ${salsa.join(", ") || "Ninguna"}\n`;
+        if (comentario) resumen += `📝 Comentario: ${comentario}\n`;
+      }
+
+      const total = document.getElementById("totalFinal").textContent;
+      resumen += `\n💰 *Total:* ${total} Bs`;
+
+      document.getElementById("resumen").textContent = resumen;
+      document.getElementById("confirmacion").style.display = "block";
+
+      const numero = "59161654410";
+      const mensaje = encodeURIComponent(resumen);
+      window.open(`https://wa.me/${numero}?text=${mensaje}`, "_blank");
+    }
+
+    window.onload = mostrarSecciones;
+  </script>
+</body>
+</html>

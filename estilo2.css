@@ -1,37 +1,83 @@
+/* REGLAS BÁSICAS */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 1s ease-in-out;
+  animation: cambioFondo 25s infinite;
+  scroll-behavior: smooth;
+}
+
+/* ANIMACIÓN DE FONDO CON IMÁGENES */
+@keyframes cambioFondo {
+  0%    { background-image: url('p1.jpg'); }
+  20%   { background-image: url('p2.jpg'); }
+  40%   { background-image: url('p3.jpg'); }
+  60%   { background-image: url('p4.jpg'); }
+  80%   { background-image: url('p5.jpg'); }
+  100%  { background-image: url('p1.jpg'); }
+}
+
+/* NAVEGACIÓN SUPERIOR */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(174, 174, 174, 0.5);
+  padding: 10px 0;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+nav ul li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* IMÁGENES RESPONSIVAS */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* MEDIA QUERIES PARA MÓVILES */
 @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
-    gap: 10px;
-    padding: 10px 0;
+    gap: 1rem;
   }
 
   nav ul li a {
-    font-size: 0.95rem;
-    padding: 8px 12px;
+    padding: 10px;
+    font-size: 1rem;
   }
 
   body {
     font-size: 1rem;
-    padding: 0;
-  }
-
-  html, body {
-    overflow-x: hidden;
-  }
-}
-
-@media (max-width: 480px) {
-  nav {
-    padding: 6px 0;
-  }
-
-  nav ul li a {
-    font-size: 0.85rem;
-    padding: 6px 10px;
-  }
-
-  body {
-    background-size: cover;
-    background-position: center;
   }
 }
